@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+## Kill if already running
+killall -9 xfsettingsd polybar xfce4-notifyd xfdesktop xfce4-panel ksuperkey xfce4-power-manager
+
+## Restore Wallpaper
+##nitrogen --restore
+
+## xfce4-settings daemon
+xfsettingsd &
+
+## Enable power management
+xfce4-power-manager &
+
+## xfdesktop ##
+xfdesktop &
+
+## Start numlockx
+exec numlockx &
+
+## diodon
+exec xfce4-clipman &
+
+## Compositor
+exec xcompmgr &
+
+## Polybar
+exec polybar &
+
+## Notification Daemon
+exec xfce4-notifyd &
+
+## Launch panel
+exec xfce4-panel &
+
+## Thunar Daemon
+exec thunar --daemon &
+
+## Polkit-Gnome ##
+exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+
+"$HOME"/.config/openbox/autostart
